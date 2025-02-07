@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Планы</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <h2>Список дел
+            <button class="btn btn-small" type="button" onclick="window.location.href='/'">+</button>
+        </h2>
+    </div>
+
+    {% if todo_items %}
+    <form method="post" action="/delete">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Дата создания</th>
+                <th>Описание</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in todo_items %}
+            <tr>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>
+                    <button class="btn btn-small" type="submit" name="delete_id" value="{{ item[0] }}">Удалить</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </form>
+    {% else %}
+    <p>Список дел пуст.</p>
+    {% endif %}
+</div>
+</body>
+</html>
