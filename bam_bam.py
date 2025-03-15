@@ -1,2 +1,0 @@
-f = int(input())
-
